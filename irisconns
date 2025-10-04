@@ -1,0 +1,18 @@
+[default]
+hostname = localhost
+port = 11972
+namespace = USER
+username = _SYSTEM
+
+[TEST]
+hostname = 127.0.0.10
+port = 11972
+namespace = USER
+username = _SYSTEM
+confirm = false
+
+[PROD]
+hostname = 127.0.0.20
+port = 11972
+namespace = %SYS
+username = _SYSTEM

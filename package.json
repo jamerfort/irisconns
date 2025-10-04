@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@intersystems/intersystems-iris-native": "^2.0.2",
+  }
+}

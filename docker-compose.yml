@@ -1,0 +1,18 @@
+services:
+  iris:
+    build:
+      context: iris_image 
+      dockerfile: Dockerfile_mini
+    restart: always
+    command: --check-caps false --ISCAgent false
+    ports:
+      - 1972
+      - 52773
+      - 53773
+    volumes:
+      - ./:/home/irisowner/dev
+  irispy:
+    build:
+      context: . 
+      dockerfile: irispy_image/Dockerfile
+    restart: no
