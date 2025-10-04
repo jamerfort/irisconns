@@ -16,3 +16,8 @@ services:
       context: . 
       dockerfile: irispy_image/Dockerfile
     restart: no
+  irisjs:
+    build:
+      context: . 
+      dockerfile: irisjs_image/Dockerfile
+    restart: no

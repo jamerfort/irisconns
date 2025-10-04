@@ -424,6 +424,7 @@ module.exports = {
   get_iris,
   set_iris,
   set_conn,
-  close_connection,
+  // TODO: Implement close_connection
+  // close_connection,
   Config,
 };
