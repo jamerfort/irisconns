@@ -124,3 +124,8 @@ To run the python demo:
 ```bash
 docker run -it --rm --network irisconns_default irisconns-irispy python demo.py
 ```
+
+To run the nodejs demo:
+```bash
+docker run -it --rm --network irisconns_default irisconns-irisjs node demo.js
+```
