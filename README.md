@@ -1,11 +1,13 @@
 # irisconns
 ## Create IRIS connections from configuration files
 
-`irisconns` was created to help manage IRIS connections in your project using configuration files instead of hard-coding the configuration information in your project.
+`irisconns` was created to help manage IRIS connections in your project using configuration files instead of hard-coding the configuration information in your project.  Any missing information (such as username, password) will be prompted by the user's terminal.
 
 `irisconns` looks in `irisconns` or `.irisconns` files for connection information.
 
-If a connection has been previously requested, the new request will return the existing connection.
+If a connection has been previously requested, the new request will immediately return the existing connection without prompting the user.
+
+The environment variable `CONN` can also be used to change the default connection settings for `irisconns`.  Set `CONN` to a valid connection name, and `irisconns` will attempt to open the specified connection by default.
 
 ## InterSystems External Languages Contest: .Net, Java, Python, JavaScript - 2025
 `irisconns` was originally created/published for the [InterSystems External Languages Contest: .Net, Java, Python, JavaScript - 2025](https://community.intersystems.com/post/intersystems-external-languages-contest-net-java-python-javascript).
@@ -60,6 +62,38 @@ The following keys can be set for each connection in an `irisconns` file.  Any m
 |namespace| Namespace being connected to |
 |username | User name |
 |confirm  | Should we confirm passwords? | false, no, off, f, n, 0,<br/> true, yes, on, t, y, 1
+
+## Environment Variables
+
+If you set the `CONN` environment variable to a valid connection name, `irisconns` will try to use that name, by default.
+
+For instance, if `CONN` is not set, `irisconns` will look for a configuration named `default` in all of the found `irisconns` (and `.irisconns`) files.  If `CONN=PROD`, `irisconns` would look for a configuration named `PROD` when no explicit configuration name if passed in the code.
+
+```python
+# Python Environment Variable Example:
+# shell> CONN="TEST" python3 test.py
+
+# This looks for a configuration named 'default', unless 'CONN' is set.
+# If CONN="TEST", this looks for a 'TEST' configuration.
+irispy = irisconns.get_irispy()
+
+# This call to get_irispy will always look for a configuration named 'PROD',
+# no matter what 'CONN' is set to.
+irispy = irisconns.get_irispy('PROD')
+```
+
+```javascript
+// JavaScript Environment Variable Example:
+// shell> CONN="TEST" node test.js
+
+// This looks for a configuration named 'default', unless 'CONN' is set.
+// If CONN="TEST", this looks for a 'TEST' configuration.
+const iris = await irisconns.get_iris();
+
+// This call to get_iris will always look for a configuration named 'PROD',
+// no matter what 'CONN' is set to.
+const iris = await irisconns.get_iris('PROD');
+```
 
 ## Python - Installation and Example
 Save `irisconns.py` to your PYTHONPATH so that you can import the `irisconns` module.
